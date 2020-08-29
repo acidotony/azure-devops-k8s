@@ -19,6 +19,7 @@ stages:
     steps:
     - bash: echo Build SecondJob
 - stage: DevDeploy
+  dependsOn: Build
   jobs:
   - job: FirstJob
     steps:
@@ -27,6 +28,7 @@ stages:
     steps:
     - bash: echo DevDeploy SecondJob
 - stage: QADeploy
+  dependsOn: Build
   jobs:
   - job: FirstJob
     steps:
@@ -34,7 +36,10 @@ stages:
   - job: SecondJob
     steps:
     - bash: echo QADeploy SecondJob
-- stage: ProdDeploy    
+- stage: ProdDeploy
+  dependsOn: 
+  - DevDeploy
+  - QADeploy    
   jobs:
   - job: FirstJob
     steps:
