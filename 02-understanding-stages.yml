@@ -42,7 +42,3 @@ stages:
   - job: SecondJob
     steps:
     - bash: echo Prod SecondJob
-
-steps:
-- script: echo Job1 Step!
-  displayName: 'Run a one-line script'
